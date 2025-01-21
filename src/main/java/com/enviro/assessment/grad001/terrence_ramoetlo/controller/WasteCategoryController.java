@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("wasteSorting/v1")
+@RequestMapping("api/v1/waste-categories")
 public class WasteCategoryController {
     private final WasteCategoryService wasteCategoryService;
 
@@ -19,7 +19,7 @@ public class WasteCategoryController {
         this.wasteCategoryService = wasteCategoryService;
     }
 
-    @GetMapping("/wasteCategories")
+    @GetMapping("/")
     public ResponseEntity<?> getWasteCategories() {
         try {
             List<WasteCategory> wasteCategoryList = wasteCategoryService.getWasteCategories();
@@ -30,7 +30,7 @@ public class WasteCategoryController {
         }
     }
 
-    @PostMapping("/createCategory")
+    @PostMapping("/create")
     public ResponseEntity<?> createCategory(@RequestBody WasteCategory wasteCategory) {
         try {
             wasteCategoryService.createWasteCategory(wasteCategory);

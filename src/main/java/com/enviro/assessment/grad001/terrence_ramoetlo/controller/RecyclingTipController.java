@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("wasteSorting/v1")
+@RequestMapping("api/v1/recycling-tips")
 public class RecyclingTipController {
     private final RecyclingTipService recyclingTipService;
 
@@ -19,7 +19,7 @@ public class RecyclingTipController {
         this.recyclingTipService = recyclingTipService;
     }
 
-    @GetMapping("/recyclingTips")
+    @GetMapping("/")
     public ResponseEntity<?> getRecyclingTips() {
         try {
             List<RecyclingTip> tips = recyclingTipService.getRecyclingTips();
@@ -30,7 +30,7 @@ public class RecyclingTipController {
         }
     }
 
-    @PostMapping("/createTip")
+    @PostMapping("/create")
     public ResponseEntity<?> createTip(@RequestBody RecyclingTip recyclingTip) {
         try {
             recyclingTipService.createRecyclingTip(recyclingTip);
@@ -44,7 +44,7 @@ public class RecyclingTipController {
         }
     }
 
-    @DeleteMapping("/deleteTip/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteTip(@PathVariable Long id) {
         try {
             recyclingTipService.deleteRecyclingTip(id);
@@ -58,7 +58,7 @@ public class RecyclingTipController {
         }
     }
 
-    @PutMapping("/updateTip/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateTip(@PathVariable Long id, @RequestBody RecyclingTip recyclingTip) {
         try {
             RecyclingTip updatedTip = recyclingTipService.updateRecyclingTip(id, recyclingTip);

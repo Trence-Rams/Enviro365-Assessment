@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("wasteSorting/v1")
+@RequestMapping("api/v1/disposal-guidelines")
 public class DisposalGuidelineController {
     private final DisposalGuidelineService disposalGuidelineService;
 
@@ -19,7 +19,7 @@ public class DisposalGuidelineController {
         this.disposalGuidelineService = disposalGuidelineService;
     }
 
-    @GetMapping("/disposalGuidelines")
+    @GetMapping("/")
     public ResponseEntity<?> getDisposalGuidelines() {
         try {
             List<DisposalGuideline> guidelines = disposalGuidelineService.getDisposalGuidelines();
@@ -30,7 +30,7 @@ public class DisposalGuidelineController {
         }
     }
 
-    @PostMapping("/createGuideline")
+    @PostMapping("/create")
     public ResponseEntity<?> createGuideline(@RequestBody DisposalGuideline disposalGuideline) {
         try {
             disposalGuidelineService.createDisposalGuideline(disposalGuideline);
@@ -44,7 +44,7 @@ public class DisposalGuidelineController {
         }
     }
 
-    @DeleteMapping("/deleteGuideline/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteGuideline(@PathVariable Long id) {
         try {
             disposalGuidelineService.deleteDisposalGuideline(id);
@@ -58,7 +58,7 @@ public class DisposalGuidelineController {
         }
     }
 
-    @PutMapping("/updateGuideline/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateGuideline(@PathVariable Long id, @RequestBody DisposalGuideline disposalGuideline) {
         try {
             DisposalGuideline updatedGuideline = disposalGuidelineService.updateDisposalGuideline(id, disposalGuideline);
